@@ -1,9 +1,9 @@
 "use client"
 
-// Função para disparar confetti
+
 export const triggerConfetti = () => {
   try {
-    // Verificar se a biblioteca confetti está disponível
+
     if (typeof window !== "undefined" && window.confetti) {
       const duration = 3 * 1000
       const animationEnd = Date.now() + duration
@@ -22,7 +22,7 @@ export const triggerConfetti = () => {
 
         const particleCount = 50 * (timeLeft / duration)
 
-        // Dispara confetti de ambos os lados
+
         window.confetti({
           ...defaults,
           particleCount,
@@ -42,7 +42,7 @@ export const triggerConfetti = () => {
   }
 }
 
-// Adicionar tipos para o confetti global
+
 declare global {
   interface Window {
     confetti: any

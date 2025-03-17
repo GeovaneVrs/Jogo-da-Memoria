@@ -1,7 +1,7 @@
 import { Heart, Star, Sun, Moon, Cloud, Flower2, Music, Zap, Umbrella, Gift, Cake } from "lucide-react"
 import type { Difficulty, MemoryCard } from "./types"
 
-// Configuração de ícones
+
 const iconConfigs = [
   { icon: Heart, color: "text-rose-500" },
   { icon: Star, color: "text-amber-500" },
@@ -16,12 +16,11 @@ const iconConfigs = [
   { icon: Cake, color: "text-red-500" },
 ]
 
-// Função para criar cartas com o número correto de pares para cada dificuldade
 export const createCards = (difficulty: Difficulty): MemoryCard[] => {
-  // Número de pares baseado na dificuldade
+
   const pairsCount = getTotalPairs(difficulty)
 
-  // Seleciona os ícones baseado na dificuldade
+
   const selectedIcons = iconConfigs.slice(0, pairsCount)
 
   const cards: MemoryCard[] = []
@@ -33,7 +32,6 @@ export const createCards = (difficulty: Difficulty): MemoryCard[] => {
   return cards.sort(() => Math.random() - 0.5)
 }
 
-// Obter o número total de pares para a dificuldade atual
 export const getTotalPairs = (difficulty: Difficulty): number => {
   return difficulty === "fácil" ? 4 : difficulty === "médio" ? 6 : 8
 }

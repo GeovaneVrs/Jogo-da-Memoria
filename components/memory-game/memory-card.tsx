@@ -12,7 +12,6 @@ interface MemoryCardProps {
 }
 
 export default function MemoryCardComponent({ card, index, isFlipped, difficulty, onClick }: MemoryCardProps) {
-  // Calcular o tamanho dos cartões com base na dificuldade
   const getCardSize = () => {
     switch (difficulty) {
       case "fácil":
@@ -24,7 +23,6 @@ export default function MemoryCardComponent({ card, index, isFlipped, difficulty
     }
   }
 
-  // Calcular o tamanho dos ícones com base na dificuldade
   const getIconSize = () => {
     switch (difficulty) {
       case "fácil":
@@ -53,7 +51,7 @@ export default function MemoryCardComponent({ card, index, isFlipped, difficulty
           transition: "transform 0.3s ease",
         }}
       >
-        {/* Parte de trás do cartão (quando não virado) */}
+
         <div
           className="absolute inset-0 flex items-center justify-center"
           style={{
@@ -64,7 +62,7 @@ export default function MemoryCardComponent({ card, index, isFlipped, difficulty
           <div className="w-1/2 h-1/2 rounded-full bg-blue-300" />
         </div>
 
-        {/* Parte da frente do cartão (quando virado) */}
+
         {(card.isMatched || isFlipped) && (
           <div
             className="absolute inset-0 flex items-center justify-center"

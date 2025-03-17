@@ -1,8 +1,8 @@
 "use client"
 
-// Função para reproduzir sons
+
 export const playSound = (soundType: "flip" | "match" | "error" | "win" | "reset") => {
-  // Implementação básica - em um projeto real, você carregaria arquivos de áudio
+
   try {
     const audio = new Audio()
 

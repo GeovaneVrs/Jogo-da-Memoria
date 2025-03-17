@@ -22,12 +22,12 @@ export default function MemoryGameContainer() {
   const [gameCompleted, setGameCompleted] = useState(false)
   const [time, setTime] = useState(0)
 
-  // Atualizar cartas quando a dificuldade mudar
+
   useEffect(() => {
     setCards(createCards(difficulty))
   }, [difficulty])
 
-  // Iniciar/parar o temporizador
+
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null
 
@@ -43,26 +43,23 @@ export default function MemoryGameContainer() {
   }, [gameStarted, gameCompleted])
 
   const handleCardClick = (clickedIndex: number) => {
-    // Iniciar o jogo no primeiro clique
+
     if (!gameStarted) {
       setGameStarted(true)
     }
 
-    // Prevenir cliques durante verificação ou em cartas já combinadas
+
     if (isChecking || cards[clickedIndex].isMatched) return
-    // Prevenir clique em carta já virada
+
     if (flippedIndexes.includes(clickedIndex)) return
-    // Prevenir clique se já tiver duas cartas viradas
+
     if (flippedIndexes.length === 2) return
 
-    // Adicionar carta clicada às cartas viradas
     const newFlipped = [...flippedIndexes, clickedIndex]
     setFlippedIndexes(newFlipped)
 
-    // Reproduzir som de clique
     playSound("flip")
 
-    // Se agora temos duas cartas viradas, verificar se há combinação
     if (newFlipped.length === 2) {
       setIsChecking(true)
       setMoves((prev) => prev + 1)
@@ -72,7 +69,6 @@ export default function MemoryGameContainer() {
       const secondCard = cards[secondIndex]
 
       if (firstCard.icon === secondCard.icon) {
-        // Combinação encontrada
         setTimeout(() => {
           setCards(
             cards.map((card, index) =>
@@ -83,22 +79,18 @@ export default function MemoryGameContainer() {
           setMatches((m) => m + 1)
           setIsChecking(false)
 
-          // Reproduzir som de combinação
           playSound("match")
 
-          // Verificar conclusão do jogo
           const totalPairs = getTotalPairs(difficulty)
           if (matches === totalPairs - 1) {
             handleGameCompletion()
           }
         }, 500)
       } else {
-        // Sem combinação - resetar após atraso
         setTimeout(() => {
           setFlippedIndexes([])
           setIsChecking(false)
 
-          // Reproduzir som de erro
           playSound("error")
         }, 1000)
       }
@@ -108,19 +100,15 @@ export default function MemoryGameContainer() {
   const handleGameCompletion = () => {
     setGameCompleted(true)
 
-    // Atualizar melhor pontuação
     const currentScore = moves
     updateBestScore(difficulty, currentScore)
 
-    // Disparar confetti
     triggerConfetti()
 
-    // Reproduzir som de vitória
     playSound("win")
   }
 
   const resetGame = () => {
-    // Criar novas cartas com a dificuldade atual
     setCards(createCards(difficulty))
     setFlippedIndexes([])
     setMatches(0)
@@ -130,14 +118,13 @@ export default function MemoryGameContainer() {
     setGameStarted(false)
     setGameCompleted(false)
 
-    // Reproduzir som de reset
     playSound("reset")
   }
 
   const changeDifficulty = (newDifficulty: Difficulty) => {
     setDifficulty(newDifficulty)
 
-    // Resetar o jogo
+
     setFlippedIndexes([])
     setMatches(0)
     setIsChecking(false)
@@ -146,7 +133,7 @@ export default function MemoryGameContainer() {
     setGameStarted(false)
     setGameCompleted(false)
 
-    // Reproduzir som de reset
+
     playSound("reset")
   }
 

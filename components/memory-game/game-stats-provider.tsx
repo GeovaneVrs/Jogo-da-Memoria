@@ -27,7 +27,6 @@ export function GameStatsProvider({ children }: { children: ReactNode }) {
     difícil: null,
   })
 
-  // Carregar melhores pontuações do localStorage
   useEffect(() => {
     const savedScores = localStorage.getItem("memoryGameBestScores")
     if (savedScores) {
@@ -44,7 +43,6 @@ export function GameStatsProvider({ children }: { children: ReactNode }) {
 
       setBestScores(newScores)
 
-      // Salvar no localStorage
       localStorage.setItem("memoryGameBestScores", JSON.stringify(newScores))
     }
   }

@@ -1,4 +1,4 @@
-// Formatar o tempo em minutos:segundos
+
 export const formatTime = (seconds: number): string => {
     const mins = Math.floor(seconds / 60)
     const secs = seconds % 60

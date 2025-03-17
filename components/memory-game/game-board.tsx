@@ -11,15 +11,14 @@ interface GameBoardProps {
 }
 
 export default function GameBoard({ cards, flippedIndexes, difficulty, onCardClick }: GameBoardProps) {
-  // Ajustar o layout da grade conforme a dificuldade
   const getGridCols = () => {
     switch (difficulty) {
       case "fácil":
-        return "grid-cols-4" // 2x4 para 8 cartas
+        return "grid-cols-4" 
       case "médio":
-        return "grid-cols-4" // 3x4 para 12 cartas
+        return "grid-cols-4" 
       case "difícil":
-        return "grid-cols-4" // 4x4 para 16 cartas
+        return "grid-cols-4" 
     }
   }
 
